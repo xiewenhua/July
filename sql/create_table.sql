@@ -20,8 +20,8 @@ CREATE TABLE batch(batch_id int NOT NULL AUTO_INCREMENT, repo_id int NOT NULL, b
 ALTER TABLE batch ADD FOREIGN KEY(repo_id) REFERENCES repositories(repo_id);
 ALTER TABLE batch ADD FOREIGN KEY(vend_id) REFERENCES vendors(vend_id);
 
--- 每一次进货可以进多种商品
-CREATE TABLE batch_goods(batch_id int NOT NULL, good_id int NOT NULL, purchase_price float NOT NULL, purchase_quantity int NOT NULL, PRIMARY KEY(batch_id, good_id));
+-- 每一次进货可以进多种商品    添加本批次该商品剩余数量（surplus）
+CREATE TABLE batch_goods(batch_id int NOT NULL, good_id int NOT NULL, purchase_price float NOT NULL, purchase_quantity int NOT NULL, surplus int NOT NULL, PRIMARY KEY(batch_id, good_id));
 ALTER TABLE batch_goods ADD FOREIGN KEY(good_id) REFERENCES goods(good_id);
 ALTER TABLE batch_goods ADD FOREIGN KEY(batch_id) REFERENCES batch(batch_id);
 
